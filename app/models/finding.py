@@ -43,3 +43,4 @@ class Finding(BaseModel):
         default=None,
         description="Optional recommendation for resolving the issue."
     )
+    
