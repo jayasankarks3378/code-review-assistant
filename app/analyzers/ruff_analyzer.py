@@ -64,16 +64,12 @@ class RuffAnalyzer(BaseAnalyzer):
                 ) from exc
 
             if result.returncode not in (0, 1):
-                raise RuntimeError(
-                    f"Ruff execution failed: {result.stderr.strip()}"
-                )
+                raise RuntimeError(f"Ruff execution failed: {result.stderr.strip()}")
 
             try:
                 diagnostics = json.loads(result.stdout)
             except json.JSONDecodeError as exc:
-                raise RuntimeError(
-                    "Ruff returned malformed JSON output."
-                ) from exc
+                raise RuntimeError("Ruff returned malformed JSON output.") from exc
 
             findings: list[Finding] = []
 
