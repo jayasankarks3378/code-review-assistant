@@ -52,7 +52,7 @@ def test_validate_rejects_large_file(parser: PythonParser):
 
 
 def test_validate_rejects_unsupported_language(parser: PythonParser):
-    
+
     source = SourceFile(
         path="example.txt",
         language="javascript",  # Intentional invalid value for this test

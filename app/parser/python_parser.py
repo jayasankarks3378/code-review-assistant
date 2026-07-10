@@ -17,14 +17,10 @@ class PythonParser(BaseParser):
         Validate the source file before parsing.
         """
         if source_file.language != Language.PYTHON:
-            raise ValueError(
-                f"Unsupported language: {source_file.language}"
-            )
+            raise ValueError(f"Unsupported language: {source_file.language}")
 
         if source_file.line_count > self.MAX_LINES:
-            raise ValueError(
-                f"File exceeds maximum size ({self.MAX_LINES} lines)."
-            )
+            raise ValueError(f"File exceeds maximum size ({self.MAX_LINES} lines).")
 
     def parse(self, source_file: SourceFile) -> ast.AST:
         """
@@ -39,6 +35,4 @@ class PythonParser(BaseParser):
             )
 
         except SyntaxError as exc:
-            raise ValueError(
-                f"Invalid Python syntax: {exc.msg}"
-            ) from exc
+            raise ValueError(f"Invalid Python syntax: {exc.msg}") from exc

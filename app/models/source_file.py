@@ -10,22 +10,13 @@ class SourceFile(BaseModel):
     Represents a source file submitted for review.
     """
 
-    path: Path = Field(
-        ...,
-        description="Path to the source file."
-    )
+    path: Path = Field(..., description="Path to the source file.")
 
     language: Language
 
-    content: str = Field(
-        ...,
-        description="Raw source code."
-    )
+    content: str = Field(..., description="Raw source code.")
 
-    encoding: str = Field(
-        default="utf-8",
-        description="File encoding."
-    )
+    encoding: str = Field(default="utf-8", description="File encoding.")
 
     @computed_field
     @property
