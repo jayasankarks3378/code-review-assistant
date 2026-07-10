@@ -8,4 +8,8 @@ line-length = 88
 profile = "black"
 
 [tool.pytest.ini_options]
+markers = [
+    "integration: tests that use real external components",
+]
 testpaths = ["tests"]
+pythonpath = ["."]

@@ -5,6 +5,7 @@ class Language(str, Enum):
     """Supported programming languages."""
 
     PYTHON = "python"
+    JAVASCRIPT = "javascript"
 
 
 class Severity(str, Enum):
