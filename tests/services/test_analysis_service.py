@@ -4,7 +4,7 @@ from app.analyzers.base_analyzer import BaseAnalyzer
 from app.models.enums import Category, Language, Severity
 from app.models.finding import Finding
 from app.models.source_file import SourceFile
-from app.orchestrator.analysis_service import AnalysisService
+from app.services.analysis_service import AnalysisService
 
 
 class SuccessfulAnalyzer(BaseAnalyzer):

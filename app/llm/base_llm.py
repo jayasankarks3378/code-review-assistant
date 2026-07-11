@@ -9,13 +9,8 @@ class BaseLLM(ABC):
         """
         Generate a raw text response from a prompt.
 
-        Args:
-            prompt: Complete prompt prepared for the language model.
-
-        Returns:
-            Raw text returned by the language model.
-
         Raises:
-            RuntimeError: If response generation fails.
+            app.exceptions.LLMGenerationError:
+                If response generation fails.
         """
         raise NotImplementedError
