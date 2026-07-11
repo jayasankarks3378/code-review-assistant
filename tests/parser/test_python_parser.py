@@ -73,3 +73,16 @@ def test_parse_accepts_empty_file(parser: PythonParser):
     tree = parser.parse(source)
 
     assert isinstance(tree, ast.Module)
+
+
+def test_validate_uses_configured_line_limit() -> None:
+    parser = PythonParser(max_lines=2)
+
+    source = SourceFile(
+        path="large.py",
+        language=Language.PYTHON,
+        content="line_one\nline_two\nline_three",
+    )
+
+    with pytest.raises(ValueError, match="2 lines"):
+        parser.validate(source)

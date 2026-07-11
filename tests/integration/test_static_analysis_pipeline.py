@@ -6,7 +6,7 @@ from app.analyzers.bandit_analyzer import BanditAnalyzer
 from app.analyzers.ruff_analyzer import RuffAnalyzer
 from app.models.enums import Category, Language
 from app.models.source_file import SourceFile
-from app.orchestrator.analysis_service import AnalysisService
+from app.services.analysis_service import AnalysisService
 
 
 @pytest.mark.integration
