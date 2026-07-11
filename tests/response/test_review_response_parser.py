@@ -2,6 +2,7 @@ import pytest
 
 from app.models.enums import Category, Priority
 from app.response.review_response_parser import ReviewResponseParser
+from app.exceptions import ReviewResponseValidationError
 
 
 def test_parse_returns_validated_review_response() -> None:
@@ -61,7 +62,7 @@ def test_parse_accepts_plain_markdown_fence() -> None:
 
 def test_parse_rejects_empty_response() -> None:
     with pytest.raises(
-        ValueError,
+        ReviewResponseValidationError,
         match="LLM response must not be empty",
     ):
         ReviewResponseParser().parse(" ")
@@ -69,7 +70,7 @@ def test_parse_rejects_empty_response() -> None:
 
 def test_parse_rejects_invalid_json() -> None:
     with pytest.raises(
-        ValueError,
+        ReviewResponseValidationError,
         match="expected JSON contract",
     ):
         ReviewResponseParser().parse("not valid json")
@@ -83,7 +84,7 @@ def test_parse_rejects_missing_required_fields() -> None:
 """
 
     with pytest.raises(
-        ValueError,
+        ReviewResponseValidationError,
         match="expected JSON contract",
     ):
         ReviewResponseParser().parse(raw_response)
@@ -107,7 +108,7 @@ def test_parse_rejects_invalid_comment_category() -> None:
 """
 
     with pytest.raises(
-        ValueError,
+        ReviewResponseValidationError,
         match="expected JSON contract",
     ):
         ReviewResponseParser().parse(raw_response)
@@ -131,7 +132,7 @@ def test_parse_rejects_non_positive_line_number() -> None:
 """
 
     with pytest.raises(
-        ValueError,
+        ReviewResponseValidationError,
         match="expected JSON contract",
     ):
         ReviewResponseParser().parse(raw_response)
@@ -169,7 +170,7 @@ def test_parse_rejects_unexpected_top_level_fields() -> None:
 """
 
     with pytest.raises(
-        ValueError,
+        ReviewResponseValidationError,
         match="expected JSON contract",
     ):
         ReviewResponseParser().parse(raw_response)
@@ -194,7 +195,7 @@ def test_parse_rejects_unexpected_comment_fields() -> None:
 """
 
     with pytest.raises(
-        ValueError,
+        ReviewResponseValidationError,
         match="expected JSON contract",
     ):
         ReviewResponseParser().parse(raw_response)

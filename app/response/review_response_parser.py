@@ -1,5 +1,6 @@
 from pydantic import ValidationError
 
+from app.exceptions import ReviewResponseValidationError
 from app.models.review_response import ReviewResponse
 
 
@@ -10,36 +11,26 @@ class ReviewResponseParser:
         """
         Convert raw model output into a validated review response.
 
-        Args:
-            raw_response: Raw text returned by an LLM provider.
-
-        Returns:
-            Validated ReviewResponse.
-
         Raises:
-            ValueError: If the response is empty, malformed, or does not
-                satisfy the expected response contract.
+            ReviewResponseValidationError:
+                If the response is empty, malformed, or invalid.
         """
         cleaned_response = self._remove_json_code_fence(raw_response.strip())
 
         if not cleaned_response:
-            raise ValueError("LLM response must not be empty.")
+            raise ReviewResponseValidationError("LLM response must not be empty.")
 
         try:
             return ReviewResponse.model_validate_json(cleaned_response)
         except ValidationError as exc:
-            raise ValueError(
+            raise ReviewResponseValidationError(
                 "LLM response does not match the expected JSON contract."
             ) from exc
 
     @staticmethod
     def _remove_json_code_fence(response: str) -> str:
-        """
-        Remove one surrounding Markdown JSON code fence.
+        """Remove one surrounding Markdown JSON code fence."""
 
-        The prompt asks models not to return Markdown fences, but some
-        models may still wrap otherwise valid JSON in one.
-        """
         if response.startswith("```json") and response.endswith("```"):
             return response[len("```json") : -len("```")].strip()
 
