@@ -4,7 +4,7 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from app.analyzers.ruff_analyzer import RuffAnalyzer
+from app.analyzers.ruff_analyzer import RuffAnalyzer, map_category, map_severity
 from app.models.enums import Category, Language, Severity
 from app.models.source_file import SourceFile
 
@@ -45,8 +45,8 @@ def test_analyze_converts_ruff_diagnostic_to_finding() -> None:
 
     assert finding.analyzer == "ruff"
     assert finding.rule_id == "F401"
-    assert finding.severity == Severity.ERROR
-    assert finding.category == Category.BUG
+    assert finding.severity == Severity.WARNING
+    assert finding.category == Category.STYLE
     assert finding.line == 1
     assert finding.column == 8
     assert finding.message == "`os` imported but unused"
@@ -114,3 +114,13 @@ def test_analyze_raises_error_when_ruff_execution_fails() -> None:
             match="Ruff execution failed",
         ):
             RuffAnalyzer().analyze(source_file)
+
+
+def test_f401_maps_to_style_warning() -> None:
+    assert map_category("F401") == Category.STYLE
+    assert map_severity("F401") == Severity.WARNING
+
+
+def test_other_f_rules_map_to_bug_error() -> None:
+    assert map_category("F821") == Category.BUG
+    assert map_severity("F821") == Severity.ERROR

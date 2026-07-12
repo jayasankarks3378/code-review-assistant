@@ -10,6 +10,9 @@ from app.models.source_file import SourceFile
 
 
 def map_category(rule_id: str) -> Category:
+    if rule_id == "F401":
+        return Category.STYLE
+
     if rule_id.startswith("F"):
         return Category.BUG
 
@@ -26,6 +29,9 @@ def map_category(rule_id: str) -> Category:
 
 
 def map_severity(rule_id: str) -> Severity:
+    if rule_id == "F401":
+        return Severity.WARNING
+
     if rule_id.startswith("F"):
         return Severity.ERROR
 
