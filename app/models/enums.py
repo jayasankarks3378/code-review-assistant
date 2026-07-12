@@ -33,3 +33,10 @@ class Priority(str, Enum):
     LOW = "low"
     MEDIUM = "medium"
     HIGH = "high"
+
+
+class ReportFormat(str, Enum):
+    """Supported review-report formats."""
+
+    MARKDOWN = "markdown"
+    JSON = "json"
