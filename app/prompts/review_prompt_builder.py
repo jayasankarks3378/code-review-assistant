@@ -63,11 +63,34 @@ Review requirements:
 - Provide a specific and actionable recommendation.
 - Prioritize correctness and security over style.
 - Avoid duplicate or equivalent comments.
+- Merge findings that refer to the same root cause.
+- When a general finding and a more specific finding overlap, report only
+  the more specific actionable issue.
 - State uncertainty when context is insufficient.
 - Keep comments concise and professional.
 - Use null for "line" when a comment applies to the entire file.
 - Return an empty comments list when no meaningful issues are found.
 - Do not include Markdown code fences or text outside the JSON response.
+- Respect the severity and category of each static-analysis finding.
+- Do not assign high priority to style or unused-import findings unless the
+  supplied code shows a direct correctness or security impact.
+- Use low priority for ordinary style and readability issues.
+- Use medium or high priority only when the code provides concrete evidence
+  of correctness, security, or substantial performance risk.
+- Do not recommend unrelated libraries or tools.
+- Every recommendation must directly mitigate the identified issue.
+- Do not recommend replacing a standard-library module unless the replacement
+  is clearly necessary and relevant.
+- Do not describe an issue as a bug, misconfiguration, or vulnerability unless
+  the supplied code supports that conclusion.
+- Do not use phrases such as "could indicate an oversight" unless that
+  uncertainty materially helps the developer.
+
+Subprocess-specific guidance:
+- Do not claim that text=True or check=True prevents command injection.
+- Prefer shell=False.
+- Recommend passing command arguments as a list.
+- Clearly distinguish process error handling from command-injection mitigation.
 
 Source file:
 {source_file.path}
