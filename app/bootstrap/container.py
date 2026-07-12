@@ -7,6 +7,10 @@ from app.services.review_service import ReviewService
 from app.parser.python_parser import PythonParser
 from app.prompts.review_prompt_builder import ReviewPromptBuilder
 from app.response.review_response_parser import ReviewResponseParser
+from app.models.enums import ReportFormat
+from app.reports.json_report_generator import JsonReportGenerator
+from app.reports.markdown_report_generator import MarkdownReportGenerator
+from app.services.report_service import ReportService
 
 
 class ApplicationContainer:
@@ -42,4 +46,11 @@ class ApplicationContainer:
             prompt_builder=self.prompt_builder,
             llm=self.llm,
             response_parser=self.response_parser,
+        )
+
+        self.report_service = ReportService(
+            generators={
+                ReportFormat.MARKDOWN: MarkdownReportGenerator(),
+                ReportFormat.JSON: JsonReportGenerator(),
+            }
         )
