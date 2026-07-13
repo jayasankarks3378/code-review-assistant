@@ -1,4 +1,14 @@
+import time
 from pathlib import Path
+
+import pytest
+
+from app.analyzers.bandit_analyzer import BanditAnalyzer
+from app.analyzers.ruff_analyzer import RuffAnalyzer
+from app.models.enums import Language
+from app.models.source_file import SourceFile
+from app.parser.python_parser import PythonParser
+from app.services.analysis_service import AnalysisService
 
 
 def generate_large_python_file() -> str:
@@ -11,19 +21,6 @@ def generate_large_python_file() -> str:
         lines.append(f"    return {index}")
 
     return "\n".join(lines)
-
-
-import time
-from pathlib import Path
-
-import pytest
-
-from app.analyzers.bandit_analyzer import BanditAnalyzer
-from app.analyzers.ruff_analyzer import RuffAnalyzer
-from app.models.enums import Language
-from app.models.source_file import SourceFile
-from app.parser.python_parser import PythonParser
-from app.services.analysis_service import AnalysisService
 
 
 @pytest.mark.performance
