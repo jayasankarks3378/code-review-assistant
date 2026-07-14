@@ -1996,7 +1996,7 @@ This project is licensed under the MIT License.
 
 ## Submission Links
 
-* GitHub Repository: `https://github.com/jayasankarks3378/code-review-assistant`
-* Colab Notebook: `https://colab.research.google.com/github/jayasankarks3378/code-review-assistant/blob/main/notebooks/Code_Review_Assistant_Demo.ipynb`
-* Unlisted YouTube Demo: `https://youtu.be/SqL6mlnfbCo?si=0gbMe-VVttSsKaXQ`
+* GitHub Repository: [GitHub Repository](https://github.com/jayasankarks3378/code-review-assistant)
+* Collab Notebook: [Collab Notebook](https://colab.research.google.com/github/jayasankarks3378/code-review-assistant/blob/main/notebooks/Code_Review_Assistant_Demo.ipynb)
+* Unlisted YouTube Demo: [You Tube](https://youtu.be/SqL6mlnfbCo?si=0gbMe-VVttSsKaXQ)
 `
