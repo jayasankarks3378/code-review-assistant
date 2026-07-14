@@ -9,7 +9,8 @@ profile = "black"
 
 [tool.pytest.ini_options]
 markers = [
-    "integration: tests that use real external components",
+    "integration: integration tests",
+    "performance: performance tests",
 ]
 testpaths = ["tests"]
 pythonpath = ["."]
