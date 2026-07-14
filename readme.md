@@ -5,7 +5,7 @@ An AI-powered Python code review assistant that combines deterministic static an
 The application uses Ruff and Bandit to identify code-quality and security findings, then supplies those findings as structured context to a local Ollama model. The generated response is validated with Pydantic before being presented as a Markdown or JSON report.
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](
-https://colab.research.google.com/github/<jayasankarks3378>/code-review-assistant/blob/main/notebooks/Code_Review_Assistant_Demo.ipynb
+https://colab.research.google.com/github/jayasankarks3378/code-review-assistant/blob/main/notebooks/Code_Review_Assistant_Demo.ipynb
 )
 
 ## Features
